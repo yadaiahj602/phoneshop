@@ -1,0 +1,52 @@
+
+{% load static %}
+{% block content %}
+
+{% include "base/navbar.html" %}
+
+<body>
+    <div class="container">
+
+        <h2 class="section-title">All Phones</h2>
+
+        <div class="container">
+            <h2>Total Phones: <span id="total-phones">{{ tot }}</span></h2>
+        </div>
+
+        <div class="product-grid">
+
+            {% for i in total %}
+
+            <div class="product-card">
+
+                {% if i.image %}
+                    <img src="{{ i.image.url }}" alt="{{ i.phone_name }}">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+
+                <div class="product-info">
+
+                    <h3>{{ i.phone_name }}</h3>
+
+                    <p class="price">₹{{ i.price }}</p>
+
+                    <p>{{ i.description }}</p>
+
+                    <a href="{% url 'details' i.pk %}" class="btn" style="margin-top:10px;">
+                        View Details
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+                <p>No phones available.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% include "base/footer.html" %}
+</body>
+{% endblock %}

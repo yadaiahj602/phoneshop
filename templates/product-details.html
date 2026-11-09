@@ -1,0 +1,35 @@
+{% load static %}
+{% block content %}
+{% include "base/navbar.html" %}
+    <div class="container">
+        <h2 class="section-title">Phone Details</h2>
+
+        <div class="details-box">
+            <div class="details-info">
+                <h2>{{tota.phone_name}}</h2>
+
+                <p><strong>Brand:</strong>{{tota.brand}}</p>
+                <p ><strong>Price:</strong>{{tota.price}}</p>
+
+                <p><strong>Available Quantity:</strong>{{tota.quantity}}</p>
+
+                <p>
+                    <strong>Description:</strong>
+                    {{tota.description}}
+                </p>
+
+                <p><strong>Date Added:</strong>{{tota.created_at}}</p>
+
+                <p><strong>Last Updated:</strong>{{tota.updated_at}}</p>
+
+                <div style="margin-top: 25px;">
+                    <a href="{% url 'home' %}" class="btn">Back to Products</a>
+                    <a href="{% url 'edit' tota.pk %}" class="btn btn-edit">Edit Phone</a>
+                    <a href="{% url 'delete' tota.pk %}" class="btn btn-delete">Delete Phone</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include "base/footer.html" %}
+</body>
+{% endblock  %}

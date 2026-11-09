@@ -1,0 +1,23 @@
+{% load static %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhoneZone - Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+     {% include "base/navbar.html" %}
+<div class="container">
+    <section class="hero">
+        <h1>Welcome to PhoneZone</h1>
+        <p>Discover the latest smartphones at amazing prices.</p>
+        <a href="{% url 'home' %}" class="btn">Explore Phones</a>
+    </section>
+</div>
+</body>
+</html>
+{% include "base/footer.html" %}
+{% endblock  %}

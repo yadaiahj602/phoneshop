@@ -1,0 +1,81 @@
+{% load static %}
+{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Phone</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    {% include "base/navbar.html" %}
+
+    <div class="container">
+        <div class="form-box">
+
+            <h2>Edit Phone</h2>
+
+            <form action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Phone Name</label>
+                    <input type="text" name="phone_name" value="{{edi.phone_name}}"
+                           placeholder="Enter phone name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Brand</label>
+                    <input type="text" name="brand" value="{{edi.brand}}"
+                           placeholder="Enter brand" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" name="price" value="{{edi.price}}"
+                           placeholder="Enter price" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" value="{{edi.quantity}}"
+                           placeholder="Enter quantity" min="1" value="1" required>
+                </div>
+          {% if edi.image %}
+    <div class="form-group">
+        <label>Current Image</label>
+
+        <img src="{{ edi.image.url }}" width="150" alt="Phone Image">
+
+        <label>Upload New Image</label>
+        <input type="file" name="image" accept="image/*">
+    </div>
+{% else %}
+    <p>No image available</p>
+
+    <input type="file" name="image" accept="image/*">
+{% endif %}
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" value=""
+                              placeholder="Enter phone description">{{edi.description}}</textarea>
+                </div>
+
+                <button type="submit" class="btn">Update Phone</button>
+
+                <a href="{% url 'home' %}" class="btn btn-delete">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+    </div>
+{% include "base/footer.html" %}
+</body>
+</html>
+
+{% endblock %}
